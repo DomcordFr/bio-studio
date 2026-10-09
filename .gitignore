@@ -1,0 +1,17 @@
+# Session & Private Keys
+token.txt
+*.key
+*.pem
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Node / OS
+node_modules/
+.DS_Store
+Thumbs.db
