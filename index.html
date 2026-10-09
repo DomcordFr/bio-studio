@@ -2300,8 +2300,43 @@
       font-size: 13px;
     }
 
-    .footer-nav-col a:hover {
-      color: var(--accent);
+    .footer-nav-col a,
+    .footer-brand-col a,
+    .footer-bottom a {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: color 200ms var(--ease-spring);
+      width: fit-content;
+    }
+
+    .footer-nav-col a::after,
+    .footer-brand-col a::after,
+    .footer-bottom a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 260ms var(--ease-spring);
+    }
+
+    .footer-nav-col a:hover,
+    .footer-brand-col a:hover,
+    .footer-bottom a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-nav-col a:hover::after,
+    .footer-brand-col a:hover::after,
+    .footer-bottom a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
     /* ==========================================================================
@@ -3240,7 +3275,7 @@
         </div>
 
         <!-- Distinctive Open Source Developer Tag -->
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hero-github-badge">
+        <a href="https://github.com/DomcordFr/bio-studio" target="_blank" rel="noopener noreferrer" class="hero-github-badge">
           <div class="hero-github-badge-icon">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
@@ -4052,7 +4087,7 @@
 
         <div class="code-snippet-box" style="margin-bottom: 14px;">
           <button class="code-copy-action" onclick="copySnippet(this)" type="button">Copy Commands</button>
-          <pre>git clone https://github.com/your-username/bio-studio.git
+          <pre>git clone https://github.com/DomcordFr/bio-studio.git
 cd bio-studio
 python3 server.py</pre>
         </div>
@@ -4543,6 +4578,10 @@ python3 server.py</pre>
           <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-secondary); max-width: 440px; margin-top: 8px;">
             Your session token is stored locally in temporary browser memory. It never leaves your device or touches an external server.
           </p>
+          <div style="margin-top: 14px; font-size: 12.5px; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+            <span>Maintained by</span>
+            <a href="https://janitorai.com/profiles/20394fdf-c461-468d-a720-db53940be487_profile-of-lucid-67" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500;">Lucid ↗</a>
+          </div>
         </div>
 
         <div class="footer-nav-col">
@@ -4550,7 +4589,7 @@ python3 server.py</pre>
           <ul>
             <li><a href="#overview" onclick="switchView('overview')">Home</a></li>
             <li><a href="#studio" onclick="switchView('studio')">Studio Workspace</a></li>
-            <li><a href="#prompts" onclick="switchView('prompts')">Prompts & Blueprints</a></li>
+            <li><a href="#prompts" onclick="switchView('prompts')">Prompts &amp; Blueprints</a></li>
             <li><a href="#guide" onclick="switchView('guide')">JanitorAI Bio Guide</a></li>
             <li><a href="#decoder" onclick="switchView('decoder')">Token Decoder</a></li>
             <li><a href="#privacy" onclick="switchView('privacy')">Privacy Policy</a></li>
@@ -4560,10 +4599,18 @@ python3 server.py</pre>
         <div class="footer-nav-col">
           <h4>Open Source</h4>
           <ul>
-            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub Repository</a></li>
+            <li><a href="https://github.com/DomcordFr/bio-studio" target="_blank" rel="noopener">GitHub Repository</a></li>
             <li><a href="https://janitorai.com" target="_blank" rel="noopener">JanitorAI Platform</a></li>
             <li><a href="https://rentry.co/jai-bio-guide-by-delightfultempe" target="_blank" rel="noopener">DelightfulTempe Guide</a></li>
+            <li><a href="https://janitorai.com/profiles/20394fdf-c461-468d-a720-db53940be487_profile-of-lucid-67" target="_blank" rel="noopener">Creator Profile</a></li>
           </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--border-dim); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; gap: 10px;">
+        <div>Bio Studio · Free &amp; Open Source (MIT)</div>
+        <div>
+          Maintained by <a href="https://janitorai.com/profiles/20394fdf-c461-468d-a720-db53940be487_profile-of-lucid-67" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500;">Lucid</a>
         </div>
       </div>
     </div>
