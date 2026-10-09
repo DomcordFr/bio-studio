@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="600" height="160" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Geist:wght@400;500;600&amp;display=swap');
+      .brand-title {
+        font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+        font-size: 58px;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        fill: #f7f0e8;
+      }
+      .brand-title-accent {
+        fill: #dfc19b;
+        font-style: italic;
+      }
+      .brand-tagline {
+        font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 12.5px;
+        font-weight: 500;
+        letter-spacing: 0.28em;
+        fill: #c5b8ac;
+        text-transform: uppercase;
+      }
+      .icon-stroke {
+        stroke: #dfc19b;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .icon-fill {
+        fill: #dfc19b;
+      }
+    </style>
+  </defs>
+
+  <!-- Centered Horizontal Unit (Zero Background Box/Glow) -->
+  <g transform="translate(68, -17)">
+    <g id="icon-mark" transform="translate(110, 48)">
+      <!-- Left Bracket -->
+      <path d="M18 18 L6 34 L18 50" class="icon-stroke" stroke-width="3.4"/>
+      <!-- Right Bracket -->
+      <path d="M50 18 L62 34 L50 50" class="icon-stroke" stroke-width="3.4"/>
+      <!-- Studio Axis -->
+      <path d="M43 6 L25 62" class="icon-stroke" stroke-width="2.8"/>
+      <!-- Core Spark -->
+      <circle cx="34" cy="34" r="4.2" class="icon-fill"/>
+    </g>
+
+    <!-- Typography -->
+    <text x="194" y="86" class="brand-title">Bio <tspan class="brand-title-accent">Studio</tspan></text>
+    <text x="198" y="116" class="brand-tagline">JanitorAI Bio Design</text>
+  </g>
+</svg>

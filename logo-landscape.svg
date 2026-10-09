@@ -1,25 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 220" width="840" height="220" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="520" height="220" fill="none">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&amp;family=Geist+Mono:wght@400;500&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Geist:wght@400;500;600&amp;display=swap');
       .brand-title {
         font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-        font-size: 72px;
+        font-size: 68px;
         font-weight: 400;
-        letter-spacing: 0.01em;
+        letter-spacing: 0.02em;
         fill: #f7f0e8;
+        text-anchor: middle;
       }
       .brand-title-accent {
         fill: #dfc19b;
         font-style: italic;
       }
       .brand-tagline {
-        font-family: 'Geist Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace;
+        font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 13.5px;
         font-weight: 500;
-        letter-spacing: 0.28em;
+        letter-spacing: 0.3em;
         fill: #c5b8ac;
         text-transform: uppercase;
+        text-anchor: middle;
       }
       .icon-stroke {
         stroke: #dfc19b;
@@ -30,41 +32,23 @@
         fill: #dfc19b;
       }
     </style>
-    <linearGradient id="iconBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#dfc19b" stop-opacity="0.14"/>
-      <stop offset="100%" stop-color="#8b572a" stop-opacity="0.04"/>
-    </linearGradient>
-    <linearGradient id="iconBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#dfc19b" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#dfc19b" stop-opacity="0.18"/>
-    </linearGradient>
-    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#dfc19b" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#dfc19b" stop-opacity="0"/>
-    </radialGradient>
   </defs>
 
-  <!-- Ambient Glow Behind Icon -->
-  <circle cx="95" cy="110" r="70" fill="url(#glowGrad)"/>
-
-  <!-- Icon Outer Squircle Badge -->
-  <rect x="50" y="65" width="90" height="90" rx="24" fill="url(#iconBgGrad)" stroke="url(#iconBorderGrad)" stroke-width="1.5"/>
-
-  <!-- Icon Glyph Geometry (Code Brackets & Studio Axis) -->
-  <g transform="translate(67, 82)">
+  <!-- Pure Centered Vector Icon (Zero Background Box/Glow) -->
+  <g id="icon-mark">
     <!-- Left Bracket -->
-    <path d="M16 16 L5 28 L16 40" class="icon-stroke" stroke-width="3.2"/>
+    <path d="M246 34 L232 48 L246 62" class="icon-stroke" stroke-width="3.2"/>
     <!-- Right Bracket -->
-    <path d="M40 16 L51 28 L40 40" class="icon-stroke" stroke-width="3.2"/>
+    <path d="M274 34 L288 48 L274 62" class="icon-stroke" stroke-width="3.2"/>
     <!-- Studio Axis -->
-    <path d="M35 8 L21 48" class="icon-stroke" stroke-width="2.8"/>
-    <!-- Central Core Point -->
-    <circle cx="28" cy="28" r="4" class="icon-fill"/>
+    <path d="M268 24 L252 72" class="icon-stroke" stroke-width="2.6"/>
+    <!-- Core Spark -->
+    <circle cx="260" cy="48" r="3.8" class="icon-fill"/>
   </g>
 
-  <!-- Typography: Name Typed Out in Cormorant Garamond Serif -->
-  <text x="175" y="118" class="brand-title">Bio <tspan class="brand-title-accent">Studio</tspan></text>
+  <!-- Main Title: Cormorant Garamond 400 -->
+  <text x="260" y="136" class="brand-title">Bio <tspan class="brand-title-accent">Studio</tspan></text>
 
-  <!-- Subtitle Tagline -->
-  <text x="178" y="148" class="brand-tagline">JanitorAI Bio Design Studio</text>
+  <!-- Subtitle: Geist 500 -->
+  <text x="260" y="178" class="brand-tagline">JanitorAI Bio Design</text>
 </svg>
