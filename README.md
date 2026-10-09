@@ -13,8 +13,11 @@ Bio Studio is a local web application for writing, testing, and previewing chara
 
 ## Quick setup
 
+### Online Web Version
+Open [https://bio.domcord.org/](https://bio.domcord.org/) in your web browser.
+
 ### Standalone (No installation needed)
-You can use Bio Studio without installing anything:
+You can use Bio Studio locally without installing anything:
 1. Download or clone this repository.
 2. Double-click `index.html` to open it in your web browser (Chrome, Firefox, Safari, Edge, or Brave).
 
