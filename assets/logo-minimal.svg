@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180" width="520" height="180" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;display=swap');
+      .brand-title {
+        font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+        font-size: 68px;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        fill: #f7f0e8;
+        text-anchor: middle;
+      }
+      .brand-title-accent {
+        fill: #dfc19b;
+        font-style: italic;
+      }
+      .icon-stroke {
+        stroke: #dfc19b;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .icon-fill {
+        fill: #dfc19b;
+      }
+    </style>
+  </defs>
+
+  <g id="icon-mark">
+    <path d="M246 28 L232 42 L246 56" class="icon-stroke" stroke-width="3.2"/>
+    <path d="M274 28 L288 42 L274 56" class="icon-stroke" stroke-width="3.2"/>
+    <path d="M268 18 L252 66" class="icon-stroke" stroke-width="2.6"/>
+    <circle cx="260" cy="42" r="3.8" class="icon-fill"/>
+  </g>
+
+  <text x="260" y="130" class="brand-title">Bio <tspan class="brand-title-accent">Studio</tspan></text>
+</svg>
