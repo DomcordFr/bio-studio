@@ -1203,17 +1203,21 @@
     .status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      gap: 5px;
       font-family: var(--font-mono);
       font-size: 11px;
-      font-weight: 450;
-      padding: 4px 10px;
+      font-weight: 500;
+      height: 22px;
+      padding: 0 8px;
+      box-sizing: border-box;
       border-radius: var(--radius-sm);
       white-space: nowrap;
       background-color: var(--bg-surface-elevated);
       color: var(--text-muted);
       border: 1px solid var(--border-dim);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
+      line-height: 1;
       transition: all var(--transition-micro);
       user-select: none;
     }
@@ -2462,16 +2466,21 @@
       flex-wrap: wrap;
     }
     .compat-score-pill {
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 500;
       font-family: var(--font-mono);
-      padding: 2px 7px;
+      height: 22px;
+      padding: 0 8px;
+      box-sizing: border-box;
       border-radius: var(--radius-sm);
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      justify-content: center;
+      gap: 5px;
       white-space: nowrap;
       border: 1px solid var(--border-dim);
+      letter-spacing: 0.01em;
+      line-height: 1;
     }
     .compat-score-pill.high {
       background: rgba(139, 177, 116, 0.12);
