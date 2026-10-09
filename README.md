@@ -120,9 +120,11 @@ python3 tests/test_suite.py
 
 ## Privacy and data handling
 
-- Bio Studio does not send your bio text, prompts, or session tokens to external analytics, tracking scripts, or telemetry servers.
-- When using the local companion server (`server.py`), API calls go directly between your machine and JanitorAI's servers.
-- Draft history and preferences are stored exclusively in your browser's local IndexedDB and local storage.
+Bio Studio is built around strict client-side privacy and data sovereignty:
+
+- **Client-Side Storage**: Your session tokens, prompt drafts, and version history are stored exclusively inside your browser's private storage (`sessionStorage` and IndexedDB). They are never saved to disk cookies or persistent third-party accounts.
+- **Hosted Mode (`bio.domcord.org`)**: When using the hosted web version, requests to JanitorAI pass through our HTTPS proxy backend (`biostudiobackend.domcord.org`) *strictly in-flight* to bridge browser CORS restrictions. No tokens, prompts, character definitions, or API responses are ever logged, saved to disk, or stored in databases.
+- **Local Self-Hosted Mode (`server.py`)**: When running the local companion server on `localhost:8080`, all network traffic routes directly between your device's IP and JanitorAI's official API. Zero external servers or proxies are involved, providing 100% air-gapped autonomy.
 
 ## License
 

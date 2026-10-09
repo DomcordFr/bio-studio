@@ -4085,21 +4085,87 @@
       <div class="privacy-hero">
         <h1 class="serif-display" style="font-size: 38px; margin: 0 0 10px 0;">Privacy &amp; Transparency</h1>
         <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6;">
-          A simple, honest explanation of how your data, session tokens, and character drafts are handled. Zero hidden trackers, zero secret servers, and 100% open source.
+          An honest, transparent explanation of how your tokens and data are handled across both hosted web use and local self-hosting. Zero trackers, zero analytics, zero token logging.
         </p>
       </div>
 
-      <!-- 1. Top Section: Run Your Own Private Instance -->
+      <!-- 1. Side-by-Side Comparison: Hosted Website vs. Local Self-Hosted -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 28px;">
+        
+        <!-- Mode A: Hosted Web Service -->
+        <div class="privacy-card" style="border-color: rgba(223, 193, 155, 0.2); background: #0e0e0e;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="privacy-card-icon" style="margin-bottom: 0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size: 15px; margin: 0;">Hosted Web App</h3>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent);">bio.domcord.org</span>
+              </div>
+            </div>
+            <span class="status-pill recognized" style="font-size: 10.5px;">Cloud Proxy</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px; font-size: 13px; color: var(--text-secondary); line-height: 1.55;">
+            <div>
+              <strong style="color: var(--text-primary); display: block; font-size: 12.5px; margin-bottom: 2px;">• Token Storage:</strong>
+              Stored strictly in your client browser memory (<code class="font-mono">sessionStorage</code> / RAM). Never saved in cookies, databases, or accounts.
+            </div>
+            <div>
+              <strong style="color: var(--text-primary); display: block; font-size: 12.5px; margin-bottom: 2px;">• API &amp; CORS Proxying:</strong>
+              When fetching or updating character bios, requests pass through our HTTPS backend (<code class="font-mono">biostudiobackend.domcord.org</code>) strictly in-flight to bypass browser CORS headers.
+            </div>
+            <div>
+              <strong style="color: var(--text-primary); display: block; font-size: 12.5px; margin-bottom: 2px;">• Zero Logging &amp; Ephemeral:</strong>
+              The proxy streams requests in real-time. Tokens, character drafts, and API responses are never written to disk, databases, or access logs.
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode B: Local Self-Hosted -->
+        <div class="privacy-card" style="border-color: rgba(139, 177, 116, 0.3); background: #0e0e0e;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="privacy-card-icon" style="margin-bottom: 0; background: rgba(139, 177, 116, 0.1); border-color: rgba(139, 177, 116, 0.25); color: var(--status-success);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size: 15px; margin: 0;">Local Self-Hosted</h3>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--status-success);">127.0.0.1:8080</span>
+              </div>
+            </div>
+            <span class="status-pill" style="font-size: 10.5px; background: rgba(139, 177, 116, 0.12); color: var(--status-success); border: 1px solid rgba(139, 177, 116, 0.3);">100% Offline Isolation</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px; font-size: 13px; color: var(--text-secondary); line-height: 1.55;">
+            <div>
+              <strong style="color: var(--text-primary); display: block; font-size: 12.5px; margin-bottom: 2px;">• Token Storage:</strong>
+              Kept only in your local browser session on your personal machine or phone.
+            </div>
+            <div>
+              <strong style="color: var(--text-primary); display: block; font-size: 12.5px; margin-bottom: 2px;">• Direct Network Routing:</strong>
+              The local Python proxy (<code class="font-mono">server.py</code>) communicates directly between your IP and JanitorAI. No traffic ever passes through external proxy servers.
+            </div>
+            <div>
+              <strong style="color: var(--text-primary); display: block; font-size: 12.5px; margin-bottom: 2px;">• Air-Gapped Autonomy:</strong>
+              Ideal if you require zero-trust guarantees, air-gapped security, or want to work fully offline.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2. Self-Host Quick Setup Box -->
       <div class="privacy-self-host-box" style="margin-bottom: 28px;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">
           <div style="display: flex; align-items: center; gap: 10px;">
-            <h2 class="serif-display" style="font-size: 24px; margin: 0;">Run Your Own Private Copy</h2>
-            <span class="status-pill recognized" style="font-size: 11px;">100% Local &amp; Open Source</span>
+            <h2 class="serif-display" style="font-size: 22px; margin: 0;">Run Your Own Local Instance</h2>
           </div>
-          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Self-Host Anywhere</span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Two Terminal Commands</span>
         </div>
         <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px;">
-          If you have any privacy concerns, security doubts, or simply prefer complete offline isolation, you do not need to use this website. You can clone the repository and run your own private instance on your own computer or phone in two commands:
+          For complete offline isolation, clone the repository and run the local companion server on Windows, macOS, Linux, or Android (Termux):
         </p>
 
         <div class="code-snippet-box" style="margin-bottom: 14px;">
@@ -4110,23 +4176,22 @@ python3 server.py</pre>
         </div>
 
         <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5;">
-          Once started, open <a href="http://127.0.0.1:8080" target="_blank" style="color: var(--accent); text-decoration: underline;">http://127.0.0.1:8080</a> in your browser. This runs fully offline on Windows, macOS, Linux, and on Android devices via Termux.
+          Then open <a href="http://127.0.0.1:8080" target="_blank" style="color: var(--accent); text-decoration: underline;">http://127.0.0.1:8080</a> in your browser. All editing, linting, previews, and decoding work without any external server dependency.
         </p>
       </div>
 
-      <!-- 2. Transparent Data Handling Cards -->
+      <!-- 3. Key Principles Grid -->
       <div class="privacy-grid">
-        
         <div class="privacy-card">
           <div class="privacy-card-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h3>1. What is sent to us (Bio Studio)?</h3>
+          <h3>1. What is stored on our servers?</h3>
           <p>
-            <strong>Absolutely nothing.</strong> Bio Studio has no user database, no login accounts, no background analytics, no telemetry, and no server logs.
+            <strong>Nothing.</strong> Bio Studio has no database, no user accounts, no telemetry scripts, and no persistent server storage.
           </p>
           <p style="font-size: 12px; color: var(--text-muted); margin: 0;">
-            The hosted website is a static client-side web application. All code executes directly inside your browser tab on your device. We never see your tokens, your character bios, or your drafts.
+            All character bios, color palettes, and settings remain exclusively on your client device.
           </p>
         </div>
 
@@ -4136,10 +4201,10 @@ python3 server.py</pre>
           </div>
           <h3>2. What is sent to JanitorAI?</h3>
           <p>
-            Only the specific network requests you explicitly choose to make — such as loading a character bio or publishing an update to your character.
+            Only the specific network requests you explicitly initiate — such as fetching a public character or publishing an update.
           </p>
           <p style="font-size: 12px; color: var(--text-muted); margin: 0;">
-            These requests travel directly between your browser and JanitorAI's official API (<code class="font-mono">janitorai.com/mb</code>). No third-party servers ever intercept your data.
+            Requests go straight to JanitorAI's official API (<code class="font-mono">janitorai.com/mb</code>).
           </p>
         </div>
 
@@ -4149,10 +4214,10 @@ python3 server.py</pre>
           </div>
           <h3>3. Where is your session token stored?</h3>
           <p>
-            Your JanitorAI Bearer token is kept strictly in temporary browser memory (RAM). When you close the browser tab, the token is instantly erased.
+            Your JanitorAI Bearer token is stored strictly in temporary browser memory (<code class="font-mono">sessionStorage</code> / RAM).
           </p>
           <p style="font-size: 12px; color: var(--text-muted); margin: 0;">
-            If you check "Remember for this tab session", it is stored in temporary <code class="font-mono">sessionStorage</code> in your browser, which is cleared automatically when the tab is closed. Tokens are never saved to permanent disk cookies.
+            Closing your tab or clicking "Clear" immediately purges the token from memory.
           </p>
         </div>
 
@@ -4162,17 +4227,16 @@ python3 server.py</pre>
           </div>
           <h3>4. Where are drafts &amp; history stored?</h3>
           <p>
-            Your character HTML drafts and version history snapshots are saved directly on your own computer or phone inside your browser's private IndexedDB database (<code class="font-mono">bio_studio_db</code>).
+            Your character HTML drafts and version history snapshots are stored directly in your browser's private IndexedDB database (<code class="font-mono">bio_studio_db</code>).
           </p>
           <p style="font-size: 12px; color: var(--text-muted); margin: 0;">
-            Snapshots never leave your device. When you export a backup file, any session tokens are automatically removed.
+            Draft snapshots never leave your device.
           </p>
         </div>
-
       </div>
 
     </div>
-  </main>
+</main>
 
   <!-- ==========================================================================
        AUTHENTICATION MODAL (MINIMALIST, UNCLUTTERED, ZERO-OVERFLOW)
@@ -4592,8 +4656,8 @@ python3 server.py</pre>
           <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-secondary); max-width: 420px; margin-bottom: 8px;">
             Open-source character bio design workspace for JanitorAI. Built for writers and bot creators to design and format custom HTML/CSS character bios.
           </p>
-          <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-secondary); max-width: 440px; margin-top: 8px;">
-            Your session token is stored locally in temporary browser memory. It never leaves your device or touches an external server.
+                    <p style="font-size: 12.5px; line-height: 1.55; color: var(--text-secondary); max-width: 440px; margin-top: 8px;">
+            <span style="color: var(--text-primary); font-weight: 500;">Privacy by Design:</span> Tokens stay strictly in your browser memory. Hosted proxy requests are ephemeral &amp; never logged; run locally for 100% offline isolation. <a href="/privacy" style="color: var(--accent); text-decoration: underline; text-underline-offset: 3px;">Learn more →</a>
           </p>
         </div>
 
