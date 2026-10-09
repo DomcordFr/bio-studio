@@ -342,9 +342,17 @@
        ========================================================================== */
     .serif-display {
       font-family: var(--font-serif);
-      font-weight: 400;
+      font-weight: 400 !important;
       letter-spacing: -0.01em;
       line-height: 1.08;
+    }
+
+    h1.serif-display, h2.serif-display, h3.serif-display,
+    .hero-title, .guide-section h2, .footer-brand-title,
+    .template-card-title, .prompts-header-box h1,
+    .guide-header-box h1, .modal-header h2 {
+      font-family: var(--font-serif);
+      font-weight: 400 !important;
     }
 
     .font-mono {
@@ -2643,7 +2651,7 @@
     .template-card-title {
       font-family: var(--font-serif);
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 400;
       color: var(--text-primary);
       margin-bottom: 3px;
     }
@@ -4861,7 +4869,7 @@ python3 server.py</pre>
       card_tabs: `<!-- Lyra Sterling (Modern Character Card with Details) -->
 <div style="max-width: 660px; margin: 0 auto; background: #0a0a0a; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.8rem; color: #f7f0e8; font-family: 'Geist', sans-serif;">
   <div style="display: flex; align-items: center; gap: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1.4rem; margin-bottom: 1.4rem; flex-wrap: wrap;">
-    <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #dfc19b, #33261a); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #050505; font-weight: 700; flex-shrink: 0;">L</div>
+    <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #dfc19b, #33261a); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #050505; font-weight: 400; flex-shrink: 0;">L</div>
     <div style="flex: 1; min-width: 200px;">
       <h1 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.2rem; font-weight: 400; color: #ffffff; line-height: 1.1; margin: 0 0 0.2rem 0;">Lyra Sterling</h1>
       <p style="font-family: 'Geist Mono', monospace; font-size: 0.74rem; color: #dfc19b; letter-spacing: 0.12em; text-transform: uppercase; margin: 0;">Antiquities Curator · City of Veridia</p>
@@ -5209,18 +5217,22 @@ Character Details:
           target.classList.add("active-view", "animating-enter");
           AppState.view = viewName;
 
-          if (pushState && typeof history !== "undefined" && history.pushState) {
+          if (typeof history !== "undefined" && window.location.protocol !== "file:") {
             const targetPath = viewName === "overview" ? "/" : `/${viewName}`;
-            if (window.location.protocol !== "file:") {
+            if (pushState && history.pushState) {
               history.pushState({ view: viewName }, "", targetPath);
-            } else {
-              window.location.hash = viewName;
+            } else if (history.replaceState) {
+              history.replaceState({ view: viewName }, "", targetPath);
             }
           }
 
           window.scrollTo({ top: 0, behavior: "smooth" });
           if (viewName === "studio") {
             renderEditor();
+          } else if (viewName === "prompts") {
+            const activeFilterBtn = document.querySelector("#blueprint-filter-buttons .btn.active");
+            const filter = activeFilterBtn ? activeFilterBtn.getAttribute("data-filter") : "all";
+            renderBlueprints(filter);
           }
         }
       }, 100);
@@ -7844,6 +7856,11 @@ Character Details:
         }
 
         switchView(initialView, false);
+
+        if (typeof history !== "undefined" && history.replaceState && window.location.protocol !== "file:") {
+          const cleanPath = initialView === "overview" ? "/" : `/${initialView}`;
+          history.replaceState({ view: initialView }, "", cleanPath);
+        }
       } catch (err) {
         console.error("Initialization error:", err);
       }
