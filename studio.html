@@ -3174,11 +3174,11 @@
       </div>
 
       <nav class="mobile-drawer-links">
-        <a href="/" class="mobile-drawer-link active" data-view="overview">
+        <a href="/" class="mobile-drawer-link" data-view="overview">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           <span>Home</span>
         </a>
-        <a href="/studio" class="mobile-drawer-link" data-view="studio">
+        <a href="/studio" class="mobile-drawer-link active" data-view="studio">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           <span>Studio Workspace</span>
         </a>
@@ -3231,11 +3231,11 @@
 
         <!-- Center Navigation Tabs -->
         <div class="nav-tabs">
-          <a href="/" class="nav-tab active" data-view="overview">
+          <a href="/" class="nav-tab" data-view="overview">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             <span>Home</span>
           </a>
-          <a href="/studio" class="nav-tab" data-view="studio">
+          <a href="/studio" class="nav-tab active" data-view="studio">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             <span>Studio</span>
           </a>
@@ -3276,7 +3276,7 @@
   <!-- ==========================================================================
        VIEW 1: REDESIGNED TALL HERO SECTION
        ========================================================================== -->
-  <main id="view-overview" class="view-page active-view">
+  <main id="view-overview" class="view-page">
     <div class="container">
       
       <section class="hero-wrapper">
@@ -3373,7 +3373,7 @@
   <!-- ==========================================================================
        VIEW 2: STUDIO WORKSPACE (IDENTICAL 42px ACTION BUTTONS)
        ========================================================================== -->
-  <main id="view-studio" class="view-page">
+  <main id="view-studio" class="view-page active-view">
     <div class="container-wide">
       
       <!-- Studio Header Strip -->
@@ -4637,7 +4637,7 @@ python3 server.py</pre>
        ========================================================================== */
     const AppState = {
       theme: "dark",
-      view: "overview",
+      view: "studio",
       code: "",
       originalBio: "",
       isDirty: false,

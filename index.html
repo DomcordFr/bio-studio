@@ -3316,18 +3316,18 @@
 
         <!-- CTA Cluster -->
         <div class="hero-cta-bar">
-          <button class="btn btn-primary" onclick="switchView('studio')">
+          <a href="/studio" class="btn btn-primary" onclick="handleNav(event, 'studio')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             <span>Open Studio Workspace</span>
-          </button>
-          <button class="btn btn-secondary" onclick="switchView('prompts')">
+          </a>
+          <a href="/prompts" class="btn btn-secondary" onclick="handleNav(event, 'prompts')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-            <span>Copy AI Prompts & Blueprints</span>
-          </button>
-          <button class="btn btn-ghost" onclick="switchView('guide')" style="height: 44px; padding: 0 18px;">
+            <span>Copy AI Prompts &amp; Blueprints</span>
+          </a>
+          <a href="/guide" class="btn btn-ghost" onclick="handleNav(event, 'guide')" style="height: 44px; padding: 0 18px;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             <span>Read Sanitizer Rules</span>
-          </button>
+          </a>
         </div>
 
         <!-- Single-Card 3-Tab Specimen Showcase -->
@@ -3627,28 +3627,28 @@
 
       <!-- Mobile Quick Jump Bar -->
       <div class="guide-mobile-bar">
-        <a href="#guide-pipeline" class="guide-link-btn active">How It Works</a>
-        <a href="#guide-blocklist" class="guide-link-btn">Server Blocklist</a>
-        <a href="#guide-fonts" class="guide-link-btn">14 Google Fonts</a>
-        <a href="#guide-allowed" class="guide-link-btn">Allowed Rules</a>
-        <a href="#guide-snippets" class="guide-link-btn">Snippets</a>
-        <a href="#guide-token-doc" class="guide-link-btn">Token Script</a>
-        <a href="#guide-bounds" class="guide-link-btn">Mobile Safety</a>
-        <a href="#guide-gateway" class="guide-link-btn">Direct /mb Gateway</a>
-        <a href="#guide-history" class="guide-link-btn">Version History</a>
+        <button type="button" onclick="scrollToGuideSection('guide-pipeline')" class="guide-link-btn active">How It Works</button>
+        <button type="button" onclick="scrollToGuideSection('guide-blocklist')" class="guide-link-btn">Server Blocklist</button>
+        <button type="button" onclick="scrollToGuideSection('guide-fonts')" class="guide-link-btn">14 Google Fonts</button>
+        <button type="button" onclick="scrollToGuideSection('guide-allowed')" class="guide-link-btn">Allowed Rules</button>
+        <button type="button" onclick="scrollToGuideSection('guide-snippets')" class="guide-link-btn">Snippets</button>
+        <button type="button" onclick="scrollToGuideSection('guide-token-doc')" class="guide-link-btn">Token Script</button>
+        <button type="button" onclick="scrollToGuideSection('guide-bounds')" class="guide-link-btn">Mobile Safety</button>
+        <button type="button" onclick="scrollToGuideSection('guide-gateway')" class="guide-link-btn">Direct /mb Gateway</button>
+        <button type="button" onclick="scrollToGuideSection('guide-history')" class="guide-link-btn">Version History</button>
       </div>
 
       <div class="guide-columns">
         <aside class="guide-nav-sticky">
-          <a href="#guide-pipeline" class="guide-link-btn active">How It Works</a>
-          <a href="#guide-blocklist" class="guide-link-btn">Server Blocklist & Quirks</a>
-          <a href="#guide-fonts" class="guide-link-btn">14 Supported Google Fonts</a>
-          <a href="#guide-allowed" class="guide-link-btn">Allowed Properties Matrix</a>
-          <a href="#guide-snippets" class="guide-link-btn">Verified Snippets</a>
-          <a href="#guide-token-doc" class="guide-link-btn">Token Extraction</a>
-          <a href="#guide-bounds" class="guide-link-btn">Mobile Layout Safety</a>
-          <a href="#guide-gateway" class="guide-link-btn">Direct /mb Gateway</a>
-          <a href="#guide-history" class="guide-link-btn">Version History & Backups</a>
+          <button type="button" onclick="scrollToGuideSection('guide-pipeline')" class="guide-link-btn active">How It Works</button>
+          <button type="button" onclick="scrollToGuideSection('guide-blocklist')" class="guide-link-btn">Server Blocklist &amp; Quirks</button>
+          <button type="button" onclick="scrollToGuideSection('guide-fonts')" class="guide-link-btn">14 Supported Google Fonts</button>
+          <button type="button" onclick="scrollToGuideSection('guide-allowed')" class="guide-link-btn">Allowed Properties Matrix</button>
+          <button type="button" onclick="scrollToGuideSection('guide-snippets')" class="guide-link-btn">Verified Snippets</button>
+          <button type="button" onclick="scrollToGuideSection('guide-token-doc')" class="guide-link-btn">Token Extraction</button>
+          <button type="button" onclick="scrollToGuideSection('guide-bounds')" class="guide-link-btn">Mobile Layout Safety</button>
+          <button type="button" onclick="scrollToGuideSection('guide-gateway')" class="guide-link-btn">Direct /mb Gateway</button>
+          <button type="button" onclick="scrollToGuideSection('guide-history')" class="guide-link-btn">Version History &amp; Backups</button>
         </aside>
 
         <div class="guide-article-wrap">
@@ -5243,6 +5243,17 @@ Character Details:
     function handleNav(e, viewName) {
       if (e) e.preventDefault();
       switchView(viewName);
+    }
+
+    function scrollToGuideSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.querySelectorAll(".guide-link-btn").forEach(btn => {
+          const attr = btn.getAttribute("onclick") || "";
+          btn.classList.toggle("active", attr.includes(id));
+        });
+      }
     }
 
     document.querySelectorAll("[data-view]").forEach(btn => {
@@ -7845,21 +7856,18 @@ Character Details:
         await checkCompanionStatus();
 
         const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
-        const hash = window.location.hash.replace("#", "");
         let initialView = "overview";
         const validViews = ["overview", "studio", "prompts", "guide", "decoder", "privacy"];
 
         if (validViews.includes(path)) {
           initialView = path;
-        } else if (validViews.includes(hash)) {
-          initialView = hash;
         }
 
         switchView(initialView, false);
 
         if (typeof history !== "undefined" && history.replaceState && window.location.protocol !== "file:") {
           const cleanPath = initialView === "overview" ? "/" : `/${initialView}`;
-          history.replaceState({ view: initialView }, "", cleanPath);
+          history.replaceState({ view: initialView }, "", cleanPath + window.location.search);
         }
       } catch (err) {
         console.error("Initialization error:", err);
