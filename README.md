@@ -1,65 +1,126 @@
-# Bio Studio — JanitorAI Character Bio Editor & Engine
+# Bio Studio
 
-An open-source, local-first design environment for JanitorAI creators to create, inspect, preview, and publish custom inline HTML/CSS character bios adhering strictly to server sanitizer constraints.
+Bio Studio is a local web application for writing, testing, and previewing character bios for JanitorAI. It provides an isolated preview, an HTML/CSS sanitizer checker that matches JanitorAI's server rules, a local token decoder, and a version history system that saves drafts in your browser.
+
+## Features
+
+- **Live Sandbox Preview**: Renders your HTML and CSS inside an isolated iframe preloaded with JanitorAI fonts.
+- **Sanitizer Rule Checker**: Flags disallowed tags (`<style>`, `<script>`), unsupported CSS properties (`position`, word `z-index`), and mobile layout issues before you publish.
+- **One-Click Auto-Fix**: Automatically strips disallowed tags and adjusts broken markup to match JanitorAI's filter.
+- **Local Token Decoder**: Decodes Supabase session tokens and JWTs directly in your browser. No data leaves your machine.
+- **Draft History**: Automatically saves revisions to your browser's IndexedDB storage so you don't lose your work.
+- **Publishing Methods**: Publish directly through the local companion server or copy a generated console snippet to run in your browser's developer tools on JanitorAI.
+
+## Quick setup
+
+### Standalone (No installation needed)
+You can use Bio Studio without installing anything:
+1. Download or clone this repository.
+2. Double-click `index.html` to open it in your web browser (Chrome, Firefox, Safari, Edge, or Brave).
+
+All editing, diagnostics, previews, template imports, and the token decoder run completely in your browser.
 
 ---
 
-## 🌟 Core Features
+### Windows
 
-- **Real JanitorAI Character Retrieval**: Paste any character URL (`https://janitorai.com/characters/{uuid}_{slug}`) or raw UUID to instantly fetch the live bot description, metadata, and avatar art.
-- **Isolated Sandboxed Iframe Preview**: Renders untrusted character HTML in an isolated `<iframe>` sandbox (`sandbox="allow-same-origin"`), preloaded with all 14 official Google Fonts and mobile 375px responsive containment.
-- **Real Sanitizer Diagnostics & Auto-Fixer**: Real-time parser checking for stripped `<style>` / `<script>` tags, disallowed `position` rules, `z-index` word tokens, `100vw` mobile overflow, and unclosed HTML tag trees with one-click automatic fixes.
-- **Zero-Leak In-Memory Authentication**: Supabase JWT session tokens remain strictly in active memory. Never logged, sent to external services, or leaked in URLs.
-- **Dual-Path Publishing Engine**:
-  1. **Companion Proxy**: 1-click update via local companion server (`PATCH /api/janitor/characters/{id}`).
-  2. **DevTools Console Bridge**: When running in CORS-restricted browser environments, generates a 1-click executable JavaScript snippet for direct execution in the creator's logged-in JanitorAI tab console.
+#### Method A: Using Python (Full local companion proxy)
+1. Install [Python 3](https://www.python.org/downloads/) (check the box to "Add python.exe to PATH" during installation).
+2. Open PowerShell or Command Prompt.
+3. Clone the repository and navigate into the folder:
+   ```cmd
+   git clone https://github.com/DomcordFr/bio-studio.git
+   cd bio-studio
+   ```
+4. Start the companion server:
+   ```cmd
+   python server.py
+   ```
+   *(or `py server.py`)*
+5. Open `http://127.0.0.1:8080` in your browser.
+
+#### Method B: Standalone
+1. Download the repository ZIP file from GitHub and extract it.
+2. Double-click `index.html`.
 
 ---
 
-## 🚀 Quick Start
+### macOS
 
-### Option 1: Using the Companion Server (Recommended)
+1. Open Terminal.
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/DomcordFr/bio-studio.git
+   cd bio-studio
+   ```
+3. Start the server (Python 3 is included with Xcode command line tools or Homebrew):
+   ```bash
+   python3 server.py
+   ```
+4. Open `http://127.0.0.1:8080` in Safari, Chrome, or Firefox.
 
-Run the lightweight companion server (Python 3.8+):
+---
+
+### Linux
+
+1. Open your terminal.
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/DomcordFr/bio-studio.git
+   cd bio-studio
+   ```
+3. Run the server using Python 3:
+   ```bash
+   python3 server.py
+   ```
+4. Open `http://127.0.0.1:8080` in your browser.
+
+---
+
+### Android (via Termux)
+
+1. Open Termux.
+2. Install git and python:
+   ```bash
+   pkg update && pkg install git python -y
+   ```
+3. Clone and start the server:
+   ```bash
+   git clone https://github.com/DomcordFr/bio-studio.git
+   cd bio-studio
+   python3 server.py
+   ```
+4. Open Chrome or your default mobile browser and visit `http://localhost:8080`.
+
+*(Alternatively, copy `index.html` to your device storage and open it directly in a mobile browser).*
+
+---
+
+### iOS and iPadOS
+
+1. Save the repository files to your Files app or open them in an app like Kodex, Runestone, or Working Copy.
+2. Open `index.html` directly in Safari or through your editor's local web viewer.
+3. All local editing, formatting, linter checks, and previews run in Safari without needing a server.
+
+---
+
+## Running tests
+
+Run the verification suites using Node.js and Python:
 
 ```bash
-python3 server.py
-```
-
-Then open [`http://127.0.0.1:8080`](http://127.0.0.1:8080) in your web browser.
-
-### Option 2: Standalone Browser Mode
-
-Open `index.html` directly in any modern browser (or host on GitHub Pages / static hosting). All features, offline editing, linter, isolated preview, and the DevTools Console Bridge work without a backend.
-
----
-
-## 🧪 Running Automated Tests
-
-Run the test suites to verify URL parsing, JWT decoding, linter accuracy, and companion endpoints:
-
-```bash
-# Node.js Integration Test Suite
+node tests/test_e2e.js
+node tests/test_phase3.js
 node tests/test_integration.js
-
-# Python End-to-End Verification Suite
 python3 tests/test_suite.py
 ```
 
----
+## Privacy and data handling
 
-## 🔒 Security Architecture
+- Bio Studio does not send your bio text, prompts, or session tokens to external analytics, tracking scripts, or telemetry servers.
+- When using the local companion server (`server.py`), API calls go directly between your machine and JanitorAI's servers.
+- Draft history and preferences are stored exclusively in your browser's local IndexedDB and local storage.
 
-| Security Domain | Implementation |
-|---|---|
-| **Token Storage** | Stored in active browser memory by default. Optional tab-scoped `sessionStorage`. |
-| **Token Transmission** | Never transmitted to third-party servers or telemetry. |
-| **Preview Context** | Sandboxed in `<iframe sandbox="allow-same-origin">` with no access to parent DOM or session tokens. |
-| **Proxy Scope** | Companion proxy restricts outbound destinations to verified JanitorAI gateway hosts. |
+## License
 
----
-
-## 📜 License & Credits
-
-- Open-source under the MIT License.
-- Technical sanitizer rules based on community documentation by DelightfulTempe.
+Bio Studio is open-source software released under the MIT License.
