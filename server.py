@@ -181,6 +181,12 @@ class StudioHandler(http.server.SimpleHTTPRequestHandler):
             }).encode("utf-8"))
             return
 
+        # SPA client-side routes fallback
+        spa_routes = {"/overview", "/studio", "/prompts", "/guide", "/decoder", "/privacy"}
+        clean_path = self.path.split("?")[0].rstrip("/")
+        if clean_path in spa_routes:
+            self.path = "/index.html"
+
         super().do_GET()
 
     def do_PATCH(self):
