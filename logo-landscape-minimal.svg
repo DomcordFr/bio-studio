@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" width="720" height="180" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&amp;display=swap');
+      .brand-title {
+        font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+        font-size: 64px;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        fill: #f7f0e8;
+      }
+      .brand-title-accent {
+        fill: #dfc19b;
+        font-style: italic;
+      }
+      .icon-stroke {
+        stroke: #dfc19b;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .icon-fill {
+        fill: #dfc19b;
+      }
+    </style>
+    <linearGradient id="iconBgGradMin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dfc19b" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#8b572a" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="iconBorderGradMin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dfc19b" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#dfc19b" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon Outer Squircle Badge -->
+  <rect x="40" y="50" width="80" height="80" rx="20" fill="url(#iconBgGradMin)" stroke="url(#iconBorderGradMin)" stroke-width="1.5"/>
+
+  <!-- Icon Glyph Geometry -->
+  <g transform="translate(56, 66)">
+    <!-- Left Bracket -->
+    <path d="M14 14 L4 24 L14 34" class="icon-stroke" stroke-width="3"/>
+    <!-- Right Bracket -->
+    <path d="M34 14 L44 24 L34 34" class="icon-stroke" stroke-width="3"/>
+    <!-- Studio Axis -->
+    <path d="M30 6 L18 42" class="icon-stroke" stroke-width="2.5"/>
+    <!-- Central Core Point -->
+    <circle cx="24" cy="24" r="3.5" class="icon-fill"/>
+  </g>
+
+  <!-- Typography: Name Typed Out in Cormorant Garamond Serif -->
+  <text x="150" y="103" class="brand-title">Bio <tspan class="brand-title-accent">Studio</tspan></text>
+</svg>
