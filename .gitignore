@@ -11,7 +11,8 @@ __pycache__/
 *$py.class
 *.so
 
-# Node / OS
+# Node / OS / Cloudflare
 node_modules/
+.wrangler/
 .DS_Store
 Thumbs.db
