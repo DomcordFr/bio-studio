@@ -320,18 +320,6 @@ class StudioHandler(http.server.SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self):
-        if self.path == "/api/solver/solve":
-            tok = get_turnstile_token(force_refresh=True)
-            self.send_response(200 if tok else 502)
-            self._send_cors_headers()
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-            if tok:
-                self.wfile.write(json.dumps({"ok": True, "token": tok}).encode("utf-8"))
-            else:
-                self.wfile.write(json.dumps({"ok": False, "error": "Solver failed to obtain token"}).encode("utf-8"))
-            return
-
         self.send_response(404)
         self.end_headers()
 
