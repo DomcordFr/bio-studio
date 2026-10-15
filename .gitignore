@@ -1,5 +1,6 @@
 # Session & Private Keys
 token.txt
+solver_key.txt
 *.key
 *.pem
 .env

@@ -9,6 +9,7 @@ try {
   if (!puppeteer) {
     console.log('Puppeteer not installed in local node_modules, running lightweight DOM & HTTP E2E checks...');
     const http = require('http');
+    const https = require('https');
     const fs = require('fs');
     const path = require('path');
     const assert = require('assert');
@@ -22,18 +23,21 @@ try {
     console.log('✓ Verified HTML markup and all 6 core views');
 
     // 2. HTTP Server check
+    const testHost = (process.env.TEST_HOST || 'http://127.0.0.1:8080').replace(/\/$/, '');
+    const client = testHost.startsWith('https:') ? https : http;
     await new Promise((resolve, reject) => {
-      http.get('http://127.0.0.1:8080/', res => {
+      const req = client.get(testHost + '/', { headers: { 'User-Agent': 'Mozilla/5.0' } }, res => {
         assert.strictEqual(res.statusCode, 200);
         console.log('✓ Static Server responds HTTP 200 OK');
         resolve();
-      }).on('error', reject);
+      });
+      req.on('error', reject);
     });
 
     console.log('\n====================================================');
     console.log('ALL E2E CHECKS PASSED (100%)');
     console.log('====================================================\n');
-    return;
+    process.exit(0);
   }
 
   console.log('Launching browser for E2E Test...');

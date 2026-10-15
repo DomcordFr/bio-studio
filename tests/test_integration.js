@@ -1,5 +1,6 @@
 const assert = require('assert');
 const http = require('http');
+const https = require('https');
 
 console.log('====================================================');
 console.log('BIO STUDIO PHASE 2 INTEGRATION TEST SUITE');
@@ -111,26 +112,29 @@ console.log('\nTEST 4: Companion Server Endpoints');
 
 function fetchHttp(url) {
   return new Promise((resolve, reject) => {
-    http.get(url, (res) => {
+    const client = url.startsWith('https:') ? https : http;
+    const req = client.get(url, { headers: { 'User-Agent': 'Mozilla/5.0' } }, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
         resolve({ status: res.statusCode, headers: res.headers, body: data });
       });
-    }).on('error', reject);
+    });
+    req.on('error', reject);
   });
 }
 
 async function runServerTests() {
+  const testHost = (process.env.TEST_HOST || 'http://127.0.0.1:8080').replace(/\/$/, '');
   try {
-    const statusRes = await fetchHttp('http://127.0.0.1:8080/api/status');
+    const statusRes = await fetchHttp(`${testHost}/api/status`);
     assert.strictEqual(statusRes.status, 200);
     const statusJson = JSON.parse(statusRes.body);
     assert.strictEqual(statusJson.status, 'online');
     assert.strictEqual(statusJson.companion, true);
     console.log('  ✓ Companion server status check passed (HTTP 200, online=true)');
 
-    const charRes = await fetchHttp('http://127.0.0.1:8080/api/janitor/characters/575201cc-52de-404e-b999-4ed4ca98f3e4');
+    const charRes = await fetchHttp(`${testHost}/api/janitor/characters/575201cc-52de-404e-b999-4ed4ca98f3e4`);
     assert.strictEqual(charRes.status, 200);
     const charJson = JSON.parse(charRes.body);
     assert.strictEqual(charJson.id, '575201cc-52de-404e-b999-4ed4ca98f3e4');

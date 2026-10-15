@@ -8,6 +8,7 @@ import urllib.request
 import json
 import re
 import sys
+import os
 
 print("====================================================")
 print("BIO STUDIO PHASE 2 VERIFICATION SUITE")
@@ -57,14 +58,17 @@ print("  ✓ In-memory state storage verified")
 
 # 3. Companion Server API Test
 print("\nTEST 3: Live Companion Server Endpoints")
+TEST_HOST = os.environ.get("TEST_HOST", "http://127.0.0.1:8080").rstrip("/")
 try:
-    with urllib.request.urlopen("http://127.0.0.1:8080/api/status", timeout=5) as res:
+    status_req = urllib.request.Request(f"{TEST_HOST}/api/status", headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(status_req, timeout=10) as res:
         status_data = json.loads(res.read().decode())
         assert status_data.get("status") == "online"
         assert status_data.get("companion") is True
         print(f"  ✓ Companion Server Online: v{status_data.get('version')}")
 
-    with urllib.request.urlopen("http://127.0.0.1:8080/api/janitor/characters/575201cc-52de-404e-b999-4ed4ca98f3e4", timeout=15) as res:
+    char_req = urllib.request.Request(f"{TEST_HOST}/api/janitor/characters/575201cc-52de-404e-b999-4ed4ca98f3e4", headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(char_req, timeout=35) as res:
         char_data = json.loads(res.read().decode())
         assert char_data.get("id") == "575201cc-52de-404e-b999-4ed4ca98f3e4"
         assert "name" in char_data
